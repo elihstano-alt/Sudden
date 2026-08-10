@@ -11,11 +11,14 @@ jobs:
       - name: Baixar projeto
         uses: actions/checkout@v4
 
+      - name: Configurar Android
+        uses: android-actions/setup-android@v4
+
       - name: Configurar Godot
-        uses: chickensoft-games/setup-godot@v2
+        uses: solarlabyrinth/action-setup-godot@v3
         with:
-          version: 4.4.1
-          use-dotnet: false
+          version: 4.4.1-stable
+          export-templates: true
 
       - name: Gerar APK
         run: |
@@ -25,5 +28,5 @@ jobs:
       - name: Disponibilizar APK
         uses: actions/upload-artifact@v4
         with:
-          name: SuddenMobile
+          name: SuddenMobile-APK
           path: build/SuddenMobile.apk
